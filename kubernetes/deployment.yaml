@@ -1,0 +1,28 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: monitor
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: monitor
+  template:
+    metadata:
+      labels:
+        app: monitor
+    spec:
+      containers:
+      - name: monitor
+        image: eviato/monitor-app-registration:amd64-v3
+        ports:
+        - containerPort: 8000
+        env:
+        - name: AZURE_AD_APP_TENANT
+          value: ""
+        - name: AZURE_AD_APP_ID
+          value: ""
+        - name: AZURE_AD_APP_SECRET
+          value: ""
+        - name: AZURE_APP_TO_WATCH
+          value: ''

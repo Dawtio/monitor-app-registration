@@ -1,0 +1,14 @@
+apiVersion: monitoring.coreos.com/v1
+kind: ServiceMonitor
+metadata:
+  name: monitor-servicemonitor
+  labels:
+    app: monitor
+    release: prometheus-operator
+spec:
+  selector:
+    matchLabels:
+      app: monitor
+  endpoints:
+  - port: metrics
+    interval: 60s
