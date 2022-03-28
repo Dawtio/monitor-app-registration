@@ -29,6 +29,12 @@ The last one correspond to the `object_id` of the app registration to monitor se
 
 - AZURE_APP_TO_WATCH : `XXXXX-XXXXXX-... XXXXX-XXXXXX-...`
 
+# Grafana
+
+This repository also provide a Grafana dashboard to quickly setup this monitoring feature.
+
+Check it in `grafana/dashboard.json`
+
 ## Author
 
 - Maxime Brunet <mbrunet@dawtio.cloud>
