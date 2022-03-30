@@ -1,12 +1,13 @@
 from adal import AuthenticationContext
-from datetime import datetime
+from datetime import datetime, date
 from prometheus_client import start_http_server, Counter
 import requests
 import os
 import time
+import schedule
 
 const_format_date = "%Y-%m-%d"
-c = Counter('secret_to_watch', 'Secret of App Registration to monitor', ['appName', 'secretName', 'expire_in', 'expire_at', 'status'])
+c = Counter('secret_to_watch', 'Secret of App Registration to monitor', ['current_date', 'appName', 'secretName', 'expire_in', 'expire_at', 'status'])
 
 
 def days_between(d1, d2):
@@ -29,7 +30,7 @@ def parse_secret(creds, appName):
             if key == "endDateTime":
                 sec["expire_at"], sec["status"], sec["expire_in"] = parse_expiration_date(items[key])
         # Write Metrics Infos
-        c.labels(appName, sec["name"], sec["expire_in"], sec["expire_at"], sec["status"]).inc()
+        c.labels(date.today().strftime("%Y-%m-%d"), appName, sec["name"], sec["expire_in"], sec["expire_at"], sec["status"]).inc()
 
 
 def parse_expiration_date(date):
@@ -71,14 +72,18 @@ def get_token_from_graph_api():
     )
     return token['accessToken']
 
+def job():
+    headers = {'Authorization': 'Bearer ' + get_token_from_graph_api()}
+    app_to_watch_object_id = os.getenv('AZURE_APP_TO_WATCH').split(" ")
+    for id in app_to_watch_object_id:
+        connect_to_ad_and_get_informations(id, headers)
+
 if __name__ == '__main__':
     # Start up the server to expose the metrics.
     start_http_server(8000)
+    job()
     # Generate metrics.
+    schedule.every().day.at("08:00").do(job)
     while True:
-        headers = {'Authorization': 'Bearer ' + get_token_from_graph_api()}
-        app_to_watch_object_id = os.getenv('AZURE_APP_TO_WATCH').split(" ")
-        for id in app_to_watch_object_id:
-            connect_to_ad_and_get_informations(id, headers)
-        # Run the process once a day
-        time.sleep(86400)
+        schedule.run_pending()
+        time.sleep(1)
