@@ -1,464 +1,486 @@
 {
-    "annotations": {
-      "list": [
-        {
-          "builtIn": 1,
-          "datasource": "-- Grafana --",
-          "enable": true,
-          "hide": true,
-          "iconColor": "rgba(0, 211, 255, 1)",
-          "name": "Annotations & Alerts",
-          "target": {
-            "limit": 100,
-            "matchAny": false,
-            "tags": [],
-            "type": "dashboard"
-          },
+  "annotations": {
+    "list": [
+      {
+        "builtIn": 1,
+        "datasource": "-- Grafana --",
+        "enable": true,
+        "hide": true,
+        "iconColor": "rgba(0, 211, 255, 1)",
+        "name": "Annotations & Alerts",
+        "target": {
+          "limit": 100,
+          "matchAny": false,
+          "tags": [],
           "type": "dashboard"
-        }
-      ]
-    },
-    "description": "Verify and be alerted on App Registration Secret expiration.",
-    "editable": true,
-    "fiscalYearStartMonth": 0,
-    "graphTooltip": 0,
-    "id": 113,
-    "iteration": 1648471588461,
-    "links": [],
-    "liveNow": false,
-    "panels": [
-      {
-        "collapsed": false,
-        "gridPos": {
-          "h": 1,
-          "w": 24,
-          "x": 0,
-          "y": 0
         },
-        "id": 12,
-        "panels": [],
-        "title": "Sum-up",
-        "type": "row"
-      },
-      {
-        "fieldConfig": {
-          "defaults": {
-            "color": {
-              "mode": "continuous-BlYlRd"
-            },
-            "mappings": [],
-            "thresholds": {
-              "mode": "absolute",
-              "steps": [
-                {
-                  "color": "green",
-                  "value": null
-                },
-                {
-                  "color": "red",
-                  "value": 80
-                }
-              ]
-            }
-          },
-          "overrides": []
-        },
-        "gridPos": {
-          "h": 4,
-          "w": 24,
-          "x": 0,
-          "y": 1
-        },
-        "id": 14,
-        "options": {
-          "colorMode": "background",
-          "graphMode": "area",
-          "justifyMode": "auto",
-          "orientation": "auto",
-          "reduceOptions": {
-            "calcs": [
-              "lastNotNull"
-            ],
-            "fields": "",
-            "values": false
-          },
-          "textMode": "name"
-        },
-        "pluginVersion": "8.4.2",
-        "targets": [
-          {
-            "datasource": {
-              "type": "prometheus",
-              "uid": "prometheus"
-            },
-            "exemplar": false,
-            "expr": "secret_to_watch_total{appName=~\"$AppName\",secretName=~\"$SecretName\",expire_in=~\".* days.\"}",
-            "instant": true,
-            "interval": "",
-            "legendFormat": "{{appName}}",
-            "refId": "A"
-          }
-        ],
-        "title": "App Registration Monitored",
-        "type": "stat"
-      },
-      {
-        "fieldConfig": {
-          "defaults": {
-            "color": {
-              "mode": "continuous-BlYlRd"
-            },
-            "mappings": [
-              {
-                "options": {
-                  "appName": {
-                    "index": 0,
-                    "text": "name"
-                  }
-                },
-                "type": "value"
-              }
-            ],
-            "thresholds": {
-              "mode": "absolute",
-              "steps": [
-                {
-                  "color": "green",
-                  "value": null
-                },
-                {
-                  "color": "#EAB839",
-                  "value": 2
-                },
-                {
-                  "color": "red",
-                  "value": 3
-                }
-              ]
-            },
-            "unit": "string"
-          },
-          "overrides": []
-        },
-        "gridPos": {
-          "h": 4,
-          "w": 24,
-          "x": 0,
-          "y": 5
-        },
-        "id": 2,
-        "options": {
-          "colorMode": "background",
-          "graphMode": "area",
-          "justifyMode": "center",
-          "orientation": "auto",
-          "reduceOptions": {
-            "calcs": [
-              "lastNotNull"
-            ],
-            "fields": "",
-            "values": false
-          },
-          "textMode": "name"
-        },
-        "pluginVersion": "8.4.2",
-        "targets": [
-          {
-            "datasource": {
-              "type": "prometheus",
-              "uid": "prometheus"
-            },
-            "exemplar": false,
-            "expr": "secret_to_watch_total{appName=~\"$AppName\",secretName=~\"$SecretName\",expire_in=~\".* days.\"}",
-            "format": "time_series",
-            "instant": true,
-            "interval": "",
-            "legendFormat": "{{secretName}}",
-            "refId": "A"
-          }
-        ],
-        "title": "Secrets",
-        "type": "stat"
-      },
-      {
-        "fieldConfig": {
-          "defaults": {
-            "color": {
-              "mode": "continuous-BlYlRd"
-            },
-            "mappings": [],
-            "thresholds": {
-              "mode": "absolute",
-              "steps": [
-                {
-                  "color": "green",
-                  "value": null
-                },
-                {
-                  "color": "red",
-                  "value": 80
-                }
-              ]
-            }
-          },
-          "overrides": []
-        },
-        "gridPos": {
-          "h": 4,
-          "w": 24,
-          "x": 0,
-          "y": 9
-        },
-        "id": 6,
-        "options": {
-          "colorMode": "background",
-          "graphMode": "area",
-          "justifyMode": "auto",
-          "orientation": "auto",
-          "reduceOptions": {
-            "calcs": [
-              "lastNotNull"
-            ],
-            "fields": "",
-            "values": false
-          },
-          "textMode": "name"
-        },
-        "pluginVersion": "8.4.2",
-        "targets": [
-          {
-            "datasource": {
-              "type": "prometheus",
-              "uid": "prometheus"
-            },
-            "exemplar": false,
-            "expr": "secret_to_watch_total{appName=~\"$AppName\",secretName=~\"$SecretName\",expire_in=~\".* days.\"}",
-            "format": "time_series",
-            "instant": true,
-            "interval": "",
-            "legendFormat": "{{expire_at}}",
-            "refId": "A"
-          }
-        ],
-        "title": "Expire At",
-        "type": "stat"
-      },
-      {
-        "fieldConfig": {
-          "defaults": {
-            "color": {
-              "mode": "continuous-BlYlRd"
-            },
-            "mappings": [],
-            "thresholds": {
-              "mode": "absolute",
-              "steps": [
-                {
-                  "color": "green",
-                  "value": null
-                },
-                {
-                  "color": "red",
-                  "value": 80
-                }
-              ]
-            }
-          },
-          "overrides": []
-        },
-        "gridPos": {
-          "h": 4,
-          "w": 24,
-          "x": 0,
-          "y": 13
-        },
-        "id": 7,
-        "options": {
-          "colorMode": "background",
-          "graphMode": "area",
-          "justifyMode": "auto",
-          "orientation": "auto",
-          "reduceOptions": {
-            "calcs": [
-              "lastNotNull"
-            ],
-            "fields": "",
-            "values": false
-          },
-          "textMode": "name"
-        },
-        "pluginVersion": "8.4.2",
-        "targets": [
-          {
-            "datasource": {
-              "type": "prometheus",
-              "uid": "prometheus"
-            },
-            "exemplar": false,
-            "expr": "secret_to_watch_total{appName=~\"$AppName\",secretName=~\"$SecretName\",expire_in=~\".* days.\"}",
-            "instant": true,
-            "interval": "",
-            "legendFormat": "{{status}}",
-            "refId": "A"
-          }
-        ],
-        "title": "Status",
-        "type": "stat"
-      },
-      {
-        "fieldConfig": {
-          "defaults": {
-            "color": {
-              "mode": "continuous-BlYlRd"
-            },
-            "mappings": [],
-            "thresholds": {
-              "mode": "absolute",
-              "steps": [
-                {
-                  "color": "green",
-                  "value": null
-                },
-                {
-                  "color": "red",
-                  "value": 80
-                }
-              ]
-            }
-          },
-          "overrides": []
-        },
-        "gridPos": {
-          "h": 4,
-          "w": 24,
-          "x": 0,
-          "y": 17
-        },
-        "id": 8,
-        "options": {
-          "colorMode": "background",
-          "graphMode": "area",
-          "justifyMode": "auto",
-          "orientation": "auto",
-          "reduceOptions": {
-            "calcs": [
-              "lastNotNull"
-            ],
-            "fields": "",
-            "values": false
-          },
-          "textMode": "name"
-        },
-        "pluginVersion": "8.4.2",
-        "targets": [
-          {
-            "datasource": {
-              "type": "prometheus",
-              "uid": "prometheus"
-            },
-            "exemplar": false,
-            "expr": "secret_to_watch_total{appName=~\"$AppName\",secretName=~\"$SecretName\",expire_in=~\".* days.\"}",
-            "instant": true,
-            "interval": "",
-            "legendFormat": "{{expire_in}}",
-            "refId": "A"
-          }
-        ],
-        "title": "Expire In",
-        "type": "stat"
-      },
-      {
-        "collapsed": true,
-        "gridPos": {
-          "h": 1,
-          "w": 24,
-          "x": 0,
-          "y": 21
-        },
-        "id": 10,
-        "panels": [
-          {
-            "gridPos": {
-              "h": 9,
-              "w": 24,
-              "x": 0,
-              "y": 22
-            },
-            "id": 4,
-            "options": {
-              "content": "# How To Monitor App Registration\n\n> This panel aims to explain how to add new application registration to be monitored.\n\n## Usage\n\nEach of those metrics are retrieve via a pod running in the Kubernetes Cluster.\nYou need to add the `object_id` of the app resitration in the environments variables of this pod.",
-              "mode": "markdown"
-            },
-            "pluginVersion": "8.4.2",
-            "title": "Informations",
-            "type": "text"
-          }
-        ],
-        "title": "Tutorials",
-        "type": "row"
+        "type": "dashboard"
       }
-    ],
-    "schemaVersion": 35,
-    "style": "dark",
-    "tags": [],
-    "templating": {
-      "list": [
-        {
-          "allValue": ".*",
-          "current": {
-            "selected": false,
-            "text": "All",
-            "value": "$__all"
+    ]
+  },
+  "description": "Verify and be alerted on App Registration Secret expiration.",
+  "editable": true,
+  "fiscalYearStartMonth": 0,
+  "graphTooltip": 0,
+  "id": 113,
+  "iteration": 1649411326448,
+  "links": [],
+  "liveNow": false,
+  "panels": [
+    {
+      "collapsed": false,
+      "gridPos": {
+        "h": 1,
+        "w": 24,
+        "x": 0,
+        "y": 0
+      },
+      "id": 12,
+      "panels": [],
+      "title": "Sum-up",
+      "type": "row"
+    },
+    {
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "continuous-BlYlRd"
           },
-          "definition": "label_values(secret_to_watch_total{expire_in=~\".* days.\"}, appName)",
-          "hide": 0,
-          "includeAll": true,
-          "multi": false,
-          "name": "AppName",
-          "options": [],
-          "query": {
-            "query": "label_values(secret_to_watch_total{expire_in=~\".* days.\"}, appName)",
-            "refId": "StandardVariableQuery"
-          },
-          "refresh": 1,
-          "regex": "",
-          "skipUrlSync": false,
-          "sort": 0,
-          "type": "query"
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": null
+              },
+              {
+                "color": "red",
+                "value": 80
+              }
+            ]
+          }
         },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 4,
+        "w": 24,
+        "x": 0,
+        "y": 1
+      },
+      "id": 14,
+      "options": {
+        "colorMode": "background",
+        "graphMode": "area",
+        "justifyMode": "auto",
+        "orientation": "auto",
+        "reduceOptions": {
+          "calcs": [
+            "lastNotNull"
+          ],
+          "fields": "",
+          "values": false
+        },
+        "textMode": "name"
+      },
+      "pluginVersion": "8.4.2",
+      "targets": [
         {
-          "allValue": ".*",
-          "current": {
-            "selected": false,
-            "text": "All",
-            "value": "$__all"
+          "datasource": {
+            "type": "prometheus",
+            "uid": "prometheus"
           },
-          "definition": "label_values(secret_to_watch_total{appName=~\"$AppName\", expire_in=~\".* days.\"}, secretName)",
-          "hide": 0,
-          "includeAll": true,
-          "multi": false,
-          "name": "SecretName",
-          "options": [],
-          "query": {
-            "query": "label_values(secret_to_watch_total{appName=~\"$AppName\", expire_in=~\".* days.\"}, secretName)",
-            "refId": "StandardVariableQuery"
-          },
-          "refresh": 1,
-          "regex": "",
-          "skipUrlSync": false,
-          "sort": 0,
-          "type": "query"
+          "exemplar": false,
+          "expr": "secret_to_watch_total{appName=~\"$AppName\",secretName=~\"$SecretName\",expire_in=~\".* days.\",current_date=~\"$date_to_watch\"}",
+          "instant": true,
+          "interval": "",
+          "legendFormat": "{{appName}}",
+          "refId": "A"
         }
-      ]
+      ],
+      "title": "App Registration Monitored",
+      "type": "stat"
     },
-    "time": {
-      "from": "now-5m",
-      "to": "now"
+    {
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "continuous-BlYlRd"
+          },
+          "mappings": [
+            {
+              "options": {
+                "appName": {
+                  "index": 0,
+                  "text": "name"
+                }
+              },
+              "type": "value"
+            }
+          ],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": null
+              },
+              {
+                "color": "#EAB839",
+                "value": 2
+              },
+              {
+                "color": "red",
+                "value": 3
+              }
+            ]
+          },
+          "unit": "string"
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 4,
+        "w": 24,
+        "x": 0,
+        "y": 5
+      },
+      "id": 2,
+      "options": {
+        "colorMode": "background",
+        "graphMode": "area",
+        "justifyMode": "center",
+        "orientation": "auto",
+        "reduceOptions": {
+          "calcs": [
+            "lastNotNull"
+          ],
+          "fields": "",
+          "values": false
+        },
+        "textMode": "name"
+      },
+      "pluginVersion": "8.4.2",
+      "targets": [
+        {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "prometheus"
+          },
+          "exemplar": false,
+          "expr": "secret_to_watch_total{appName=~\"$AppName\",secretName=~\"$SecretName\",expire_in=~\".* days.\",current_date=~\"$date_to_watch\"}",
+          "format": "time_series",
+          "instant": true,
+          "interval": "",
+          "legendFormat": "{{secretName}}",
+          "refId": "A"
+        }
+      ],
+      "title": "Secrets",
+      "type": "stat"
     },
-    "timepicker": {},
-    "timezone": "",
-    "title": "App Registration Monitoring",
-    "uid": "linOwOs7z",
-    "version": 10,
-    "weekStart": ""
-  }
+    {
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "continuous-BlYlRd"
+          },
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": null
+              },
+              {
+                "color": "red",
+                "value": 80
+              }
+            ]
+          }
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 4,
+        "w": 24,
+        "x": 0,
+        "y": 9
+      },
+      "id": 6,
+      "options": {
+        "colorMode": "background",
+        "graphMode": "area",
+        "justifyMode": "auto",
+        "orientation": "auto",
+        "reduceOptions": {
+          "calcs": [
+            "lastNotNull"
+          ],
+          "fields": "",
+          "values": false
+        },
+        "textMode": "name"
+      },
+      "pluginVersion": "8.4.2",
+      "targets": [
+        {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "prometheus"
+          },
+          "exemplar": false,
+          "expr": "secret_to_watch_total{appName=~\"$AppName\",secretName=~\"$SecretName\",expire_in=~\".* days.\",current_date=~\"$date_to_watch\"}",
+          "format": "time_series",
+          "instant": true,
+          "interval": "",
+          "legendFormat": "{{expire_at}}",
+          "refId": "A"
+        }
+      ],
+      "title": "Expire At",
+      "type": "stat"
+    },
+    {
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "continuous-BlYlRd"
+          },
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": null
+              },
+              {
+                "color": "red",
+                "value": 80
+              }
+            ]
+          }
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 4,
+        "w": 24,
+        "x": 0,
+        "y": 13
+      },
+      "id": 7,
+      "options": {
+        "colorMode": "background",
+        "graphMode": "area",
+        "justifyMode": "auto",
+        "orientation": "auto",
+        "reduceOptions": {
+          "calcs": [
+            "lastNotNull"
+          ],
+          "fields": "",
+          "values": false
+        },
+        "textMode": "name"
+      },
+      "pluginVersion": "8.4.2",
+      "targets": [
+        {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "prometheus"
+          },
+          "exemplar": false,
+          "expr": "secret_to_watch_total{appName=~\"$AppName\",secretName=~\"$SecretName\",expire_in=~\".* days.\",current_date=~\"$date_to_watch\"}",
+          "instant": true,
+          "interval": "",
+          "legendFormat": "{{status}}",
+          "refId": "A"
+        }
+      ],
+      "title": "Status",
+      "type": "stat"
+    },
+    {
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "continuous-BlYlRd"
+          },
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": null
+              },
+              {
+                "color": "red",
+                "value": 80
+              }
+            ]
+          }
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 4,
+        "w": 24,
+        "x": 0,
+        "y": 17
+      },
+      "id": 8,
+      "options": {
+        "colorMode": "background",
+        "graphMode": "area",
+        "justifyMode": "auto",
+        "orientation": "auto",
+        "reduceOptions": {
+          "calcs": [
+            "lastNotNull"
+          ],
+          "fields": "",
+          "values": false
+        },
+        "textMode": "name"
+      },
+      "pluginVersion": "8.4.2",
+      "targets": [
+        {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "prometheus"
+          },
+          "exemplar": false,
+          "expr": "secret_to_watch_total{appName=~\"$AppName\",secretName=~\"$SecretName\",expire_in=~\".* days.\",current_date=~\"$date_to_watch\"}",
+          "instant": true,
+          "interval": "",
+          "legendFormat": "{{expire_in}}",
+          "refId": "A"
+        }
+      ],
+      "title": "Expire In",
+      "type": "stat"
+    },
+    {
+      "collapsed": true,
+      "gridPos": {
+        "h": 1,
+        "w": 24,
+        "x": 0,
+        "y": 21
+      },
+      "id": 10,
+      "panels": [
+        {
+          "gridPos": {
+            "h": 9,
+            "w": 24,
+            "x": 0,
+            "y": 2
+          },
+          "id": 4,
+          "options": {
+            "content": "# How To Monitor App Registration\n\n> This panel aims to explain how to add new application registration to be monitored.\n\n## Usage\n\nEach of those metrics are retrieve via a pod running in the Kubernetes Cluster.\nYou need to add the `object_id` of the app resitration in the environments variables of this pod.",
+            "mode": "markdown"
+          },
+          "pluginVersion": "8.4.2",
+          "title": "Informations",
+          "type": "text"
+        }
+      ],
+      "title": "Tutorials",
+      "type": "row"
+    }
+  ],
+  "schemaVersion": 35,
+  "style": "dark",
+  "tags": [],
+  "templating": {
+    "list": [
+      {
+        "allValue": ".*",
+        "current": {
+          "selected": false,
+          "text": "All",
+          "value": "$__all"
+        },
+        "definition": "label_values(secret_to_watch_total{expire_in=~\".* days.\"}, appName)",
+        "hide": 0,
+        "includeAll": true,
+        "multi": false,
+        "name": "AppName",
+        "options": [],
+        "query": {
+          "query": "label_values(secret_to_watch_total{expire_in=~\".* days.\"}, appName)",
+          "refId": "StandardVariableQuery"
+        },
+        "refresh": 1,
+        "regex": "",
+        "skipUrlSync": false,
+        "sort": 0,
+        "type": "query"
+      },
+      {
+        "allValue": ".*",
+        "current": {
+          "selected": false,
+          "text": "All",
+          "value": "$__all"
+        },
+        "definition": "label_values(secret_to_watch_total{appName=~\"$AppName\", expire_in=~\".* days.\"}, secretName)",
+        "hide": 0,
+        "includeAll": true,
+        "multi": false,
+        "name": "SecretName",
+        "options": [],
+        "query": {
+          "query": "label_values(secret_to_watch_total{appName=~\"$AppName\", expire_in=~\".* days.\"}, secretName)",
+          "refId": "StandardVariableQuery"
+        },
+        "refresh": 1,
+        "regex": "",
+        "skipUrlSync": false,
+        "sort": 0,
+        "type": "query"
+      },
+      {
+        "current": {
+          "selected": false,
+          "text": "2022-03-30",
+          "value": "2022-03-30"
+        },
+        "definition": "label_values(secret_to_watch_total{appName=~\"$AppName\", expire_in=~\".* days.\"}, current_date)",
+        "hide": 0,
+        "includeAll": false,
+        "multi": false,
+        "name": "date_to_watch",
+        "options": [],
+        "query": {
+          "query": "label_values(secret_to_watch_total{appName=~\"$AppName\", expire_in=~\".* days.\"}, current_date)",
+          "refId": "StandardVariableQuery"
+        },
+        "refresh": 1,
+        "regex": "",
+        "skipUrlSync": false,
+        "sort": 4,
+        "type": "query"
+      }
+    ]
+  },
+  "time": {
+    "from": "now-5m",
+    "to": "now"
+  },
+  "timepicker": {},
+  "timezone": "",
+  "title": "App Registration Monitoring",
+  "uid": "linOwOs7z",
+  "version": 12,
+  "weekStart": ""
+}

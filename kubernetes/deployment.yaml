@@ -14,7 +14,7 @@ spec:
     spec:
       containers:
       - name: monitor
-        image: eviato/monitor-app-registration:amd64-v3
+        image: ghcr.io/dawtio/monitor-app-registration:master
         ports:
         - containerPort: 8000
         env:
